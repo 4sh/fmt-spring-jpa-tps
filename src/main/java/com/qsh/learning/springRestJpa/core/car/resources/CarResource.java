@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/car")
 public class CarResource {
-    // À compléter lors de la partie 1 du TP 1
+    // À compléter lors de la partie 2 du TP 1
 
 
     // À décommenter lors de la partie 3 du TP 1
