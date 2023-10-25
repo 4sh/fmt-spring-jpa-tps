@@ -1,4 +1,4 @@
-package com.fsh.fmt.springJpaRest.core;
+package com.qsh.learning.springRestJpa;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
