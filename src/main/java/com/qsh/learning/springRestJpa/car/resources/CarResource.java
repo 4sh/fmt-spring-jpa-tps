@@ -2,6 +2,7 @@ package com.qsh.learning.springRestJpa.car.resources;
 
 import com.qsh.learning.springRestJpa.car.services.CarService;
 import com.qsh.learning.springRestJpa.core.config.models.CurrentCarIdHolder;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,7 @@ public class CarResource {
 
     public CarResource(
             CarService carService,
-            CurrentCarIdHolder currentCarIdHolder
+            @Qualifier("adminHolder") CurrentCarIdHolder currentCarIdHolder
     ) {
         this.carService = carService;
         this.currentCarIdHolder = currentCarIdHolder;
