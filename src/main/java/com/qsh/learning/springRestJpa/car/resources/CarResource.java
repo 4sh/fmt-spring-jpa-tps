@@ -1,6 +1,6 @@
 package com.qsh.learning.springRestJpa.car.resources;
 
-import com.qsh.learning.springRestJpa.car.services.CarService;
+import com.qsh.learning.springRestJpa.car.services.VehicleService;
 import com.qsh.learning.springRestJpa.core.config.models.CurrentCarIdHolder;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,21 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/car")
 public class CarResource {
 
-    private final CarService carService;
+    private final VehicleService vehicleService;
 
     private final CurrentCarIdHolder currentCarIdHolder;
 
     public CarResource(
-            CarService carService,
+            VehicleService vehicleService,
             @Qualifier("adminHolder") CurrentCarIdHolder currentCarIdHolder
     ) {
-        this.carService = carService;
+        this.vehicleService = vehicleService;
         this.currentCarIdHolder = currentCarIdHolder;
     }
 
     @GetMapping("")
     public String find() {
-        return this.carService.find();
+        return this.vehicleService.find();
     }
 
     @GetMapping("/{id}")
@@ -34,6 +34,6 @@ public class CarResource {
 
         System.out.printf("Current user: %s%n", currentCarIdHolder.getId());
 
-        return this.carService.find();
+        return this.vehicleService.find();
     }
 }
