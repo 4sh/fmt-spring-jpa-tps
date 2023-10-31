@@ -6,13 +6,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.annotation.SessionScope;
 
 @Configuration
 public class AppConfig {
 
     @Bean
-    @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
-    public CurrentCarIdHolder currentCarIdHolder() {
-        return new CurrentCarIdHolder();
+    @SessionScope
+    public CurrentCarIdHolder currentCarIdHolderForUser() {
+        CurrentCarIdHolder currentCarIdHolder = new CurrentCarIdHolder();
+        currentCarIdHolder.setId("USER");
+        return currentCarIdHolder;
     }
 }

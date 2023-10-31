@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/car")
 public class CarResource {
 
-    private CarService carService;
+    private final CarService carService;
 
-    private CurrentCarIdHolder currentCarIdHolder;
+    private final CurrentCarIdHolder currentCarIdHolder;
 
     public CarResource(
             CarService carService,
@@ -31,9 +31,7 @@ public class CarResource {
     @GetMapping("/{id}")
     public String findById(@PathVariable("id") String carId) {
 
-        System.out.println(String.format("Ancienne valeur de car id: %s", currentCarIdHolder.getCarId()));
-        currentCarIdHolder.setCarId(carId);
-        System.out.println(String.format("Nouvelle valeur de car id: %s", currentCarIdHolder.getCarId()));
+        System.out.printf("Current user: %s%n", currentCarIdHolder.getId());
 
         return this.carService.find();
     }
