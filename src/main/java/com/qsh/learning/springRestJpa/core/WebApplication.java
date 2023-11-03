@@ -17,8 +17,5 @@ public class WebApplication extends SpringBootServletInitializer {
 		ConfigurableApplicationContext applicationContext = new SpringApplicationBuilder(WebApplication.class)
 				.build()
 				.run(args);
-
-		String userId = applicationContext.getBean(AppConfig.class).userId;
-		System.out.printf("Current user: %s%n", userId);
 	}
 }

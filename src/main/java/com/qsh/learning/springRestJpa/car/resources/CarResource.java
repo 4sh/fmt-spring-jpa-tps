@@ -30,9 +30,6 @@ public class CarResource {
 
     @GetMapping("/{id}")
     public String findById(@PathVariable("id") String carId) {
-
-        System.out.printf("Current user: %s%n", currentCarIdHolder.getId());
-
         return this.vehicleService.find();
     }
 }
