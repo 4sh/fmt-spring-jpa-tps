@@ -47,6 +47,4 @@ public class CarService implements VehicleService {
 
         System.out.printf("Car %s has been deleted\n", id);
     }
-
-
 }
