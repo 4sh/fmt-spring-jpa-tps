@@ -1,6 +1,7 @@
 package com.qsh.learning.springRestJpa.car.repositories;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qsh.learning.springRestJpa.car.models.Car;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class CarFileRepository {
 
     public CarFileRepository() throws FileNotFoundException {
         this.file = ResourceUtils.getFile("classpath:./data/cars.json");
-        this.objectMapper = new ObjectMapper();
+        this.objectMapper = new ObjectMapper().configure(MapperFeature.USE_ANNOTATIONS, false);
     }
 
     public List<Car> getCars() {
