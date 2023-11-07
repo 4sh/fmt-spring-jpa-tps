@@ -38,7 +38,7 @@ public class CarFileRepository {
         return this.getCars().stream()
                 .filter(car -> Objects.equals(car.getId(), id))
                 .findFirst()
-                .orElseGet(Car::new);
+                .orElse(null);
     }
 
     public void create(Car car) {
