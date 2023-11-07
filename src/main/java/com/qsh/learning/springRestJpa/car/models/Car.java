@@ -13,15 +13,6 @@ public class Car {
 
     private Integer numberOfSeats;
 
-    public Car(String id, String brand, String model, String color, Integer numberOfDoors, Integer numberOfSeats) {
-        this.id = id;
-        this.brand = brand;
-        this.model = model;
-        this.color = color;
-        this.numberOfDoors = numberOfDoors;
-        this.numberOfSeats = numberOfSeats;
-    }
-
     public String getId() {
         return id;
     }
