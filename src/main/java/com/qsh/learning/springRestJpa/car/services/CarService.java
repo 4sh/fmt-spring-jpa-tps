@@ -1,5 +1,6 @@
 package com.qsh.learning.springRestJpa.car.services;
 
+import com.qsh.learning.springRestJpa.car.exceptions.CarNotFoundException;
 import com.qsh.learning.springRestJpa.car.models.Car;
 import com.qsh.learning.springRestJpa.car.repositories.CarFileRepository;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,11 @@ public class CarService implements VehicleService {
 
     @Override
     public Car findById(String id) {
-        return this.carFileRepository.findById(id);
+        Car car = this.carFileRepository.findById(id);
+        if (null == car) {
+            throw new CarNotFoundException(String.format("Car %s not found", id));
+        }
+        return car;
     }
 
     @Override
