@@ -33,23 +33,17 @@ public class CarService implements VehicleService {
     @Override
     public Car create(Car car) {
         this.carFileRepository.create(car);
-
-        System.out.printf("Car %s has been created\n", car.getId());
         return car;
     }
 
     @Override
     public Car update(String id, Car car) {
         this.carFileRepository.update(car);
-
-        System.out.printf("Car %s has been updated\n", car.getId());
         return car;
     }
 
     @Override
     public void delete(String id) {
         this.carFileRepository.delete(id);
-
-        System.out.printf("Car %s has been deleted\n", id);
     }
 }
