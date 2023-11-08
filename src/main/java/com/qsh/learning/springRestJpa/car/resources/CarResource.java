@@ -4,6 +4,7 @@ import com.qsh.learning.springRestJpa.car.mappers.CarMapper;
 import com.qsh.learning.springRestJpa.car.models.dtos.CarDto;
 import com.qsh.learning.springRestJpa.car.models.entities.Car;
 import com.qsh.learning.springRestJpa.car.services.CarService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,14 +45,14 @@ public class CarResource {
     }
 
     @PostMapping("")
-    public CarDto create(@RequestBody CarDto car) {
+    public CarDto create(@RequestBody @Valid CarDto car) {
         return this.carMapper.entityToDto(this.carService.create(this.carMapper.dtoToEntity(car)));
     }
 
     @PutMapping("/{id}")
     public CarDto update(
             @PathVariable("id") String id,
-            @RequestBody CarDto car
+            @RequestBody @Valid CarDto car
     ) {
         car.setId(id);
         return this.carMapper.entityToDto(this.carService.update(id, this.carMapper.dtoToEntity(car)));

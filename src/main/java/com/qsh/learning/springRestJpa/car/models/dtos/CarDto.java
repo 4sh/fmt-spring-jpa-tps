@@ -2,19 +2,28 @@ package com.qsh.learning.springRestJpa.car.models.dtos;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import jakarta.validation.constraints.*;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class CarDto {
+    @NotBlank
     private String id;
 
+    @NotBlank
     private String brand;
 
+    @NotBlank
+    @Size(max = 20)
     private String model;
 
     private String color;
 
+    @Min(1)
+    @Max(5)
     private Integer numberOfDoors;
 
+    @Min(1)
+    @Max(5)
     private Integer numberOfSeats;
 
     private String catalogReference;
