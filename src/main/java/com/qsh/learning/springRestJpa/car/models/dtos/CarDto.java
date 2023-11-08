@@ -2,6 +2,7 @@ package com.qsh.learning.springRestJpa.car.models.dtos;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import com.qsh.learning.springRestJpa.car.validation.ReferenceConstraint;
 import jakarta.validation.constraints.*;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
@@ -26,6 +27,7 @@ public class CarDto {
     @Max(5)
     private Integer numberOfSeats;
 
+    @ReferenceConstraint
     private String catalogReference;
 
     public String getId() {
