@@ -1,6 +1,6 @@
 package com.qsh.learning.springRestJpa.car.resources;
 
-import com.qsh.learning.springRestJpa.car.models.Car;
+import com.qsh.learning.springRestJpa.car.models.entities.Car;
 import com.qsh.learning.springRestJpa.car.services.CarService;
 import org.springframework.web.bind.annotation.*;
 

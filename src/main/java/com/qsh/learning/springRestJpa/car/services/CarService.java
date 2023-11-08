@@ -1,7 +1,7 @@
 package com.qsh.learning.springRestJpa.car.services;
 
 import com.qsh.learning.springRestJpa.car.exceptions.CarNotFoundException;
-import com.qsh.learning.springRestJpa.car.models.Car;
+import com.qsh.learning.springRestJpa.car.models.entities.Car;
 import com.qsh.learning.springRestJpa.car.repositories.CarFileRepository;
 import org.springframework.stereotype.Service;
 

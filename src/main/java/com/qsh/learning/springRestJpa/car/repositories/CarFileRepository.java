@@ -3,7 +3,7 @@ package com.qsh.learning.springRestJpa.car.repositories;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qsh.learning.springRestJpa.car.models.Car;
+import com.qsh.learning.springRestJpa.car.models.entities.Car;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 

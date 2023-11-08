@@ -1,6 +1,6 @@
 package com.qsh.learning.springRestJpa.car.services;
 
-import com.qsh.learning.springRestJpa.car.models.Car;
+import com.qsh.learning.springRestJpa.car.models.entities.Car;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.qsh.learning.springRestJpa.car.models;
+package com.qsh.learning.springRestJpa.car.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
