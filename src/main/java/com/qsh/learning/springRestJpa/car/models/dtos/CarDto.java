@@ -1,25 +1,23 @@
-package com.qsh.learning.springRestJpa.car.models.entities;
+package com.qsh.learning.springRestJpa.car.models.dtos;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
-public class Car {
-    @JsonProperty("id")
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+public class CarDto {
     private String id;
 
-    @JsonProperty("brand")
     private String brand;
 
-    @JsonProperty("model")
     private String model;
 
-    @JsonProperty("color")
     private String color;
 
-    @JsonProperty("number_of_doors")
     private Integer numberOfDoors;
 
-    @JsonProperty("number_of_seats")
     private Integer numberOfSeats;
+
+    private String catalogReference;
 
     public String getId() {
         return id;
@@ -67,5 +65,13 @@ public class Car {
 
     public void setNumberOfSeats(Integer numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
+    }
+
+    public String getCatalogReference() {
+        return catalogReference;
+    }
+
+    public void setCatalogReference(String catalogReference) {
+        this.catalogReference = catalogReference;
     }
 }

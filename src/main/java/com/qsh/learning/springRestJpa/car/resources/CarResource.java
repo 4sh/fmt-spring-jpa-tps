@@ -1,5 +1,7 @@
 package com.qsh.learning.springRestJpa.car.resources;
 
+import com.qsh.learning.springRestJpa.car.mappers.CarMapper;
+import com.qsh.learning.springRestJpa.car.models.dtos.CarDto;
 import com.qsh.learning.springRestJpa.car.models.entities.Car;
 import com.qsh.learning.springRestJpa.car.services.CarService;
 import org.springframework.web.bind.annotation.*;
@@ -14,42 +16,45 @@ public class CarResource {
 
     public final CarService carService;
 
-    public CarResource(CarService carService) {
+    public final CarMapper carMapper;
+
+    public CarResource(
+            CarService carService,
+            CarMapper carMapper
+    ) {
         this.carService = carService;
+        this.carMapper = carMapper;
     }
 
     @GetMapping()
-    public List<Car> findAll(
+    public List<CarDto> findAll(
             @RequestParam(value = "color", required = false) String color
     ) {
         List<Car> cars = this.carService.findAll();
 
-        if (null != color) {
-            return cars.stream()
-                    .filter(car -> Objects.equals(car.getColor(), color))
-                    .collect(Collectors.toList());
-        } else {
-            return cars;
-        }
+        return cars.stream()
+                .filter(car -> color == null || color.equals(car.getColor()))
+                .map(carMapper::entityToDto)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public Car findById(@PathVariable("id") String id) {
-        return this.carService.findById(id);
+    public CarDto findById(@PathVariable("id") String id) {
+        return this.carMapper.entityToDto(this.carService.findById(id));
     }
 
     @PostMapping("")
-    public Car create(@RequestBody Car car) {
-        return this.carService.create(car);
+    public CarDto create(@RequestBody CarDto car) {
+        return this.carMapper.entityToDto(this.carService.create(this.carMapper.dtoToEntity(car)));
     }
 
     @PutMapping("/{id}")
-    public Car update(
+    public CarDto update(
             @PathVariable("id") String id,
-            @RequestBody Car car
+            @RequestBody CarDto car
     ) {
         car.setId(id);
-        return this.carService.update(id, car);
+        return this.carMapper.entityToDto(this.carService.update(id, this.carMapper.dtoToEntity(car)));
     }
 
     @DeleteMapping("/{id}")
