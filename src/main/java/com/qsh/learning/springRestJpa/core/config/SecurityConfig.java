@@ -6,6 +6,12 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.HttpBasicConfigurer;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -23,6 +29,29 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/api/car/*").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/car/*").authenticated()
                 )
+                .httpBasic(httpSecurityHttpBasicConfigurer -> new HttpBasicConfigurer<>())
                 .build();
+    }
+
+    @Bean
+    public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
+        UserDetails user = User.withUsername("user")
+                .password(passwordEncoder.encode("password"))
+                .authorities(/*ajouter une persmission*/)
+                .roles()
+                .build();
+
+        UserDetails admin = User.withUsername("admin")
+                .password(passwordEncoder.encode("admin"))
+                .authorities(/*ajouter une persmission*/)
+                .build();
+
+        return new InMemoryUserDetailsManager(user, admin);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        return encoder;
     }
 }
