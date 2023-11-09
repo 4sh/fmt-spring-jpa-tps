@@ -24,10 +24,11 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers(HttpMethod.GET, "/api/car").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/api/car/*").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/api/car").authenticated()
-                        .requestMatchers(HttpMethod.PUT, "/api/car/*").authenticated()
-                        .requestMatchers(HttpMethod.DELETE, "/api/car/*").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/car/*").hasAnyAuthority("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/car").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/car/*").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/car/*").hasAuthority("ADMIN")
+                        .anyRequest().denyAll()
                 )
                 .httpBasic(httpSecurityHttpBasicConfigurer -> new HttpBasicConfigurer<>())
                 .build();
@@ -37,13 +38,12 @@ public class SecurityConfig {
     public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
         UserDetails user = User.withUsername("user")
                 .password(passwordEncoder.encode("password"))
-                .authorities(/*ajouter une persmission*/)
-                .roles()
+                .authorities("USER")
                 .build();
 
         UserDetails admin = User.withUsername("admin")
                 .password(passwordEncoder.encode("admin"))
-                .authorities(/*ajouter une persmission*/)
+                .authorities("ADMIN")
                 .build();
 
         return new InMemoryUserDetailsManager(user, admin);
