@@ -40,7 +40,7 @@ public class CarResource {
         List<Car> cars = this.carService.findAll();
 
         return cars.stream()
-                .filter(car -> color == null || color.equals(car.getColor()))
+                .filter(car -> color == null || color.equals(car.getCarDescription().getColor()))
                 .map(carMapper::entityToDto)
                 .collect(Collectors.toList());
     }

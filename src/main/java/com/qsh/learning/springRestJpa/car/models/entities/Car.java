@@ -1,25 +1,22 @@
 package com.qsh.learning.springRestJpa.car.models.entities;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.qsh.learning.springRestJpa.car.enums.Color;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "car")
 public class Car {
-    @JsonProperty("id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
     private String id;
 
-    @JsonProperty("brand")
-    private String brand;
+    @Embedded
+    private CarDescription carDescription;
 
-    @JsonProperty("model")
-    private String model;
-
-    @JsonProperty("color")
-    private Color color;
-
-    @JsonProperty("number_of_doors")
+    @Column(name = "number_of_doors")
     private Integer numberOfDoors;
 
-    @JsonProperty("number_of_seats")
+    @Column(name = "number_of_seats")
     private Integer numberOfSeats;
 
     public String getId() {
@@ -30,28 +27,12 @@ public class Car {
         this.id = id;
     }
 
-    public Color getColor() {
-        return color;
+    public CarDescription getCarDescription() {
+        return carDescription;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
+    public void setCarDescription(CarDescription carDescription) {
+        this.carDescription = carDescription;
     }
 
     public Integer getNumberOfDoors() {

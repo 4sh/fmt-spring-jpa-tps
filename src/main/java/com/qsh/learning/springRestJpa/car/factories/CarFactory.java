@@ -14,6 +14,6 @@ public class CarFactory {
             Car car,
             @MappingTarget CarDto carDto
     ) {
-        carDto.setCatalogReference(car.getBrand()+"_"+car.getModel());
+        carDto.setCatalogReference(car.getCarDescription().getBrand()+"_"+car.getCarDescription().getModel());
     }
 }

@@ -8,7 +8,6 @@ import jakarta.validation.constraints.*;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class CarDto {
-    @NotBlank
     private String id;
 
     @NotBlank

@@ -13,9 +13,9 @@ public interface CarMapper {
 
     @Mappings({
             @Mapping(target = "id", source = "id"),
-            @Mapping(target = "brand", source = "brand"),
-            @Mapping(target = "model", source = "model"),
-            @Mapping(target = "color", source = "color"),
+            @Mapping(target = "brand", source = "carDescription.brand"),
+            @Mapping(target = "model", source = "carDescription.model"),
+            @Mapping(target = "color", source = "carDescription.color"),
             @Mapping(target = "numberOfDoors", source = "numberOfDoors"),
             @Mapping(target = "numberOfSeats", source = "numberOfSeats"),
             @Mapping(target = "catalogReference", ignore = true),
@@ -24,9 +24,9 @@ public interface CarMapper {
 
     @Mappings({
             @Mapping(target = "id", source = "id"),
-            @Mapping(target = "brand", source = "brand"),
-            @Mapping(target = "model", source = "model"),
-            @Mapping(target = "color", source = "color"),
+            @Mapping(target = "carDescription.brand", source = "brand"),
+            @Mapping(target = "carDescription.model", source = "model"),
+            @Mapping(target = "carDescription.color", source = "color"),
             @Mapping(target = "numberOfDoors", source = "numberOfDoors"),
             @Mapping(target = "numberOfSeats", source = "numberOfSeats"),
     })
