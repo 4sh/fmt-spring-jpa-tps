@@ -2,7 +2,7 @@ package com.qsh.learning.springRestJpa.car.services;
 
 import com.qsh.learning.springRestJpa.car.exceptions.CarNotFoundException;
 import com.qsh.learning.springRestJpa.car.models.entities.Car;
-import com.qsh.learning.springRestJpa.car.repositories.CarFileRepository;
+import com.qsh.learning.springRestJpa.car.repositories.CarEntityManagerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,20 +10,20 @@ import java.util.List;
 @Service
 public class CarService implements VehicleService {
 
-    public final CarFileRepository carFileRepository;
+    private final CarEntityManagerRepository carEntityManagerRepository;
 
-    public CarService(CarFileRepository carFileRepository) {
-        this.carFileRepository = carFileRepository;
+    public CarService(CarEntityManagerRepository carEntityManagerRepository) {
+        this.carEntityManagerRepository = carEntityManagerRepository;
     }
 
     @Override
     public List<Car> findAll() {
-        return this.carFileRepository.getCars();
+        return this.carEntityManagerRepository.getCars();
     }
 
     @Override
     public Car findById(String id) {
-        Car car = this.carFileRepository.findById(id);
+        Car car = this.carEntityManagerRepository.findById(id);
         if (null == car) {
             throw new CarNotFoundException(String.format("Car %s not found", id));
         }
@@ -32,18 +32,18 @@ public class CarService implements VehicleService {
 
     @Override
     public Car create(Car car) {
-        this.carFileRepository.create(car);
+        this.carEntityManagerRepository.create(car);
         return car;
     }
 
     @Override
     public Car update(String id, Car car) {
-        this.carFileRepository.update(car);
+        this.carEntityManagerRepository.update(car);
         return car;
     }
 
     @Override
     public void delete(String id) {
-        this.carFileRepository.delete(id);
+        this.carEntityManagerRepository.delete(id);
     }
 }
