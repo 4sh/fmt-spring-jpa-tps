@@ -1,6 +1,7 @@
 package com.qsh.learning.springRestJpa.car.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.qsh.learning.springRestJpa.car.enums.Color;
 
 public class Car {
     @JsonProperty("id")
@@ -13,7 +14,7 @@ public class Car {
     private String model;
 
     @JsonProperty("color")
-    private String color;
+    private Color color;
 
     @JsonProperty("number_of_doors")
     private Integer numberOfDoors;
@@ -29,11 +30,11 @@ public class Car {
         this.id = id;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 

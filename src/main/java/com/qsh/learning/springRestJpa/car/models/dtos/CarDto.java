@@ -2,6 +2,7 @@ package com.qsh.learning.springRestJpa.car.models.dtos;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import com.qsh.learning.springRestJpa.car.enums.Color;
 import com.qsh.learning.springRestJpa.car.validation.ReferenceConstraint;
 import jakarta.validation.constraints.*;
 
@@ -17,7 +18,7 @@ public class CarDto {
     @Size(max = 20)
     private String model;
 
-    private String color;
+    private Color color;
 
     @Min(1)
     @Max(5)
@@ -38,11 +39,11 @@ public class CarDto {
         this.id = id;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 

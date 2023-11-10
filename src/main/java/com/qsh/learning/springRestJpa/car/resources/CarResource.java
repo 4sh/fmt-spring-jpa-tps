@@ -1,5 +1,6 @@
 package com.qsh.learning.springRestJpa.car.resources;
 
+import com.qsh.learning.springRestJpa.car.enums.Color;
 import com.qsh.learning.springRestJpa.car.mappers.CarMapper;
 import com.qsh.learning.springRestJpa.car.models.dtos.CarDto;
 import com.qsh.learning.springRestJpa.car.models.entities.Car;
@@ -34,7 +35,7 @@ public class CarResource {
     )
     @GetMapping()
     public List<CarDto> findAll(
-            @RequestParam(value = "color", required = false) String color
+            @RequestParam(value = "color", required = false) Color color
     ) {
         List<Car> cars = this.carService.findAll();
 
