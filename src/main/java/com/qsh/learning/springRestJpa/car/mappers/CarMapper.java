@@ -22,5 +22,13 @@ public interface CarMapper {
     })
     CarDto entityToDto(Car car);
 
+    @Mappings({
+            @Mapping(target = "id", source = "id"),
+            @Mapping(target = "brand", source = "brand"),
+            @Mapping(target = "model", source = "model"),
+            @Mapping(target = "color", source = "color"),
+            @Mapping(target = "numberOfDoors", source = "numberOfDoors"),
+            @Mapping(target = "numberOfSeats", source = "numberOfSeats"),
+    })
     Car dtoToEntity(CarDto carDto);
 }

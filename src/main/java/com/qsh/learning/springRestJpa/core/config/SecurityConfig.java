@@ -13,6 +13,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -23,11 +24,11 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers(HttpMethod.GET, "/api/car").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/api/car/*").hasAnyAuthority("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/car").hasAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/car/*").hasAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/car/*").hasAuthority("ADMIN")
+                        .requestMatchers(new AntPathRequestMatcher( "/api/car", "GET")).authenticated()
+                        .requestMatchers(new AntPathRequestMatcher( "/api/car/*", "GET")).hasAnyAuthority("USER", "ADMIN")
+                        .requestMatchers(new AntPathRequestMatcher( "/api/car", "POST")).hasAuthority("ADMIN")
+                        .requestMatchers(new AntPathRequestMatcher( "/api/car/*", "PUT")).hasAuthority("ADMIN")
+                        .requestMatchers(new AntPathRequestMatcher( "/api/car/*", "DELETE")).hasAuthority("ADMIN")
                         .anyRequest().denyAll()
                 )
                 .httpBasic(httpSecurityHttpBasicConfigurer -> new HttpBasicConfigurer<>())
