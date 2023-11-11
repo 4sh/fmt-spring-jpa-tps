@@ -19,6 +19,10 @@ public class Car {
     @Column(name = "number_of_seats")
     private Integer numberOfSeats;
 
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "license_plate_id")
+    private LicensePlate licensePlate;
+
     public String getId() {
         return id;
     }
@@ -49,5 +53,13 @@ public class Car {
 
     public void setNumberOfSeats(Integer numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
+    }
+
+    public LicensePlate getLicensePlate() {
+        return licensePlate;
+    }
+
+    public void setLicensePlate(LicensePlate licensePlate) {
+        this.licensePlate = licensePlate;
     }
 }

@@ -30,6 +30,8 @@ public class CarDto {
     @ReferenceConstraint
     private String catalogReference;
 
+    private LicensePlateDto licensePlate;
+
     public String getId() {
         return id;
     }
@@ -84,5 +86,13 @@ public class CarDto {
 
     public void setCatalogReference(String catalogReference) {
         this.catalogReference = catalogReference;
+    }
+
+    public LicensePlateDto getLicensePlate() {
+        return licensePlate;
+    }
+
+    public void setLicensePlate(LicensePlateDto licensePlate) {
+        this.licensePlate = licensePlate;
     }
 }
