@@ -27,3 +27,19 @@ CREATE TABLE IF NOT EXISTS technical_control(
     car_id varchar(255) constraint FK_car_id
         references car
 );
+
+CREATE TABLE IF NOT EXISTS driver(
+    id varchar(255) not null
+    primary key,
+    name varchar(255) not null
+);
+
+CREATE TABLE IF NOT EXISTS car_driver
+(
+    car_id varchar(255) not null
+        CONSTRAINT FK_cars_drivers_car_id
+            REFERENCES car,
+    driver_id varchar(255) not null
+        CONSTRAINT FK_cars_drivers_driver_id
+            REFERENCES driver
+);
