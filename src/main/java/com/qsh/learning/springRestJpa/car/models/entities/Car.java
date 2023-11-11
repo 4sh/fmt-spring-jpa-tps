@@ -29,6 +29,13 @@ public class Car {
     @JoinColumn(name = "car_id")
     private List<TechnicalControl> technicalControls;
 
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "car_driver",
+            joinColumns = @JoinColumn(name = "car_id"),
+            inverseJoinColumns = @JoinColumn(name = "driver_id"))
+    private List<Driver> drivers;
+
     public String getId() {
         return id;
     }
@@ -75,5 +82,13 @@ public class Car {
 
     public void setTechnicalControls(List<TechnicalControl> technicalControls) {
         this.technicalControls = technicalControls;
+    }
+
+    public List<Driver> getDrivers() {
+        return drivers;
+    }
+
+    public void setDrivers(List<Driver> drivers) {
+        this.drivers = drivers;
     }
 }

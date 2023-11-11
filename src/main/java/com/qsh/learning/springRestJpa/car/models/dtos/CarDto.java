@@ -36,6 +36,8 @@ public class CarDto {
 
     private List<TechnicalControlDto> technicalControls;
 
+    private List<DriverDto> drivers;
+
     public String getId() {
         return id;
     }
@@ -106,5 +108,13 @@ public class CarDto {
 
     public void setTechnicalControls(List<TechnicalControlDto> technicalControls) {
         this.technicalControls = technicalControls;
+    }
+
+    public List<DriverDto> getDrivers() {
+        return drivers;
+    }
+
+    public void setDrivers(List<DriverDto> drivers) {
+        this.drivers = drivers;
     }
 }

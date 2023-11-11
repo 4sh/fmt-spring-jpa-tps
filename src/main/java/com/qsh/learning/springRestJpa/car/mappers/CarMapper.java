@@ -20,6 +20,7 @@ public interface CarMapper {
             @Mapping(target = "numberOfSeats", source = "numberOfSeats"),
             @Mapping(target = "licensePlate", source = "licensePlate"),
             @Mapping(target = "technicalControls", source = "technicalControls"),
+            @Mapping(target = "drivers", source = "drivers"),
             @Mapping(target = "catalogReference", ignore = true),
     })
     CarDto entityToDto(Car car);
@@ -33,6 +34,7 @@ public interface CarMapper {
             @Mapping(target = "numberOfSeats", source = "numberOfSeats"),
             @Mapping(target = "licensePlate", source = "licensePlate"),
             @Mapping(target = "technicalControls", source = "technicalControls"),
+            @Mapping(target = "drivers", source = "drivers"),
     })
     Car dtoToEntity(CarDto carDto);
 }
