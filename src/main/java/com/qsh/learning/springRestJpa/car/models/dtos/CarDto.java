@@ -6,6 +6,8 @@ import com.qsh.learning.springRestJpa.car.enums.Color;
 import com.qsh.learning.springRestJpa.car.validation.ReferenceConstraint;
 import jakarta.validation.constraints.*;
 
+import java.util.List;
+
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class CarDto {
     private String id;
@@ -31,6 +33,8 @@ public class CarDto {
     private String catalogReference;
 
     private LicensePlateDto licensePlate;
+
+    private List<TechnicalControlDto> technicalControls;
 
     public String getId() {
         return id;
@@ -94,5 +98,13 @@ public class CarDto {
 
     public void setLicensePlate(LicensePlateDto licensePlate) {
         this.licensePlate = licensePlate;
+    }
+
+    public List<TechnicalControlDto> getTechnicalControls() {
+        return technicalControls;
+    }
+
+    public void setTechnicalControls(List<TechnicalControlDto> technicalControls) {
+        this.technicalControls = technicalControls;
     }
 }

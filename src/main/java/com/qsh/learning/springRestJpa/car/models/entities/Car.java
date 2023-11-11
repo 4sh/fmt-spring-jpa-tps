@@ -2,6 +2,8 @@ package com.qsh.learning.springRestJpa.car.models.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "car")
 public class Car {
@@ -22,6 +24,10 @@ public class Car {
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "license_plate_id")
     private LicensePlate licensePlate;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_id")
+    private List<TechnicalControl> technicalControls;
 
     public String getId() {
         return id;
@@ -61,5 +67,13 @@ public class Car {
 
     public void setLicensePlate(LicensePlate licensePlate) {
         this.licensePlate = licensePlate;
+    }
+
+    public List<TechnicalControl> getTechnicalControls() {
+        return technicalControls;
+    }
+
+    public void setTechnicalControls(List<TechnicalControl> technicalControls) {
+        this.technicalControls = technicalControls;
     }
 }
