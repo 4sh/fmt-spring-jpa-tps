@@ -17,3 +17,13 @@ CREATE TABLE IF NOT EXISTS license_plate(
 
 ALTER TABLE car ADD COLUMN IF NOT EXISTS license_plate_id varchar(255) constraint FK_region_id
     references license_plate;
+
+CREATE TABLE IF NOT EXISTS technical_control(
+    id varchar(255) not null
+        primary key,
+    garage varchar(255) not null,
+    control_year varchar(255) not null,
+    technical_controller varchar(255) not null,
+    car_id varchar(255) constraint FK_car_id
+        references car
+);
