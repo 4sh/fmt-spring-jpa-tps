@@ -3,13 +3,8 @@ package com.qsh.learning.springRestJpa.vehicle.models.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "vehicle")
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(
-        name = "vehicle_class",
-        discriminatorType = DiscriminatorType.STRING)
-@DiscriminatorValue("VEHICLE")
-public class Vehicle {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")

@@ -1,13 +1,11 @@
 package com.qsh.learning.springRestJpa.vehicle.models.entities;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "trailer")
-@DiscriminatorValue("TRAILER")
 public class Trailer extends Vehicle {
     @Column(name = "registration")
     private String registration;
