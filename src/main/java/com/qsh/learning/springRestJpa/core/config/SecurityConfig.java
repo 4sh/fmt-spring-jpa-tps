@@ -2,7 +2,6 @@ package com.qsh.learning.springRestJpa.core.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -29,6 +28,10 @@ public class SecurityConfig {
                         .requestMatchers(new AntPathRequestMatcher( "/api/car", "POST")).hasAuthority("ADMIN")
                         .requestMatchers(new AntPathRequestMatcher( "/api/car/*", "PUT")).hasAuthority("ADMIN")
                         .requestMatchers(new AntPathRequestMatcher( "/api/car/*", "DELETE")).hasAuthority("ADMIN")
+                        .requestMatchers(new AntPathRequestMatcher( "/api/truck", "POST")).hasAuthority("ADMIN")
+                        .requestMatchers(new AntPathRequestMatcher( "/api/truck", "GET")).hasAnyAuthority("USER", "ADMIN")
+                        .requestMatchers(new AntPathRequestMatcher( "/api/trailer", "POST")).hasAuthority("ADMIN")
+                        .requestMatchers(new AntPathRequestMatcher( "/api/trailer", "GET")).hasAnyAuthority("USER", "ADMIN")
                         .anyRequest().denyAll()
                 )
                 .httpBasic(httpSecurityHttpBasicConfigurer -> new HttpBasicConfigurer<>())
