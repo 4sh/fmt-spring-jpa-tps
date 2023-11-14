@@ -43,3 +43,13 @@ CREATE TABLE IF NOT EXISTS car_driver
         CONSTRAINT FK_cars_drivers_driver_id
             REFERENCES driver
 );
+
+CREATE TABLE IF NOT EXISTS vehicle
+(
+    id varchar(255) not null
+        primary key,
+    brand varchar(255) not null,
+    registration varchar(255),
+    tonnage int,
+    vehicle_class varchar(255)
+);
