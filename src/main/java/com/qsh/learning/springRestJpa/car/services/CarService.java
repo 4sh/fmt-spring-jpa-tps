@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CarService implements VehicleService {
+public class CarService {
 
     private final CarEntityManagerRepository carEntityManagerRepository;
 
@@ -16,12 +16,10 @@ public class CarService implements VehicleService {
         this.carEntityManagerRepository = carEntityManagerRepository;
     }
 
-    @Override
     public List<Car> findAll() {
         return this.carEntityManagerRepository.getCars();
     }
 
-    @Override
     public Car findById(String id) {
         Car car = this.carEntityManagerRepository.findById(id);
         if (null == car) {
@@ -30,19 +28,16 @@ public class CarService implements VehicleService {
         return car;
     }
 
-    @Override
     public Car create(Car car) {
         this.carEntityManagerRepository.create(car);
         return car;
     }
 
-    @Override
     public Car update(String id, Car car) {
         this.carEntityManagerRepository.update(car);
         return car;
     }
 
-    @Override
     public void delete(String id) {
         this.carEntityManagerRepository.delete(id);
     }
