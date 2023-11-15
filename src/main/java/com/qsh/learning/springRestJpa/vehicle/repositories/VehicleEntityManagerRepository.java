@@ -19,12 +19,12 @@ public class VehicleEntityManagerRepository {
 
     @Transactional
     public List<Truck> getTrucks() {
-        return this.entityManager.createQuery("SELECT v FROM Truck v").getResultList();
+        return this.entityManager.createQuery("SELECT t FROM Truck t").getResultList();
     }
 
     @Transactional
     public List<Trailer> getTrailers() {
-        return this.entityManager.createQuery("SELECT v FROM Trailer v").getResultList();
+        return this.entityManager.createQuery("SELECT t FROM Trailer t").getResultList();
     }
 
     @Transactional

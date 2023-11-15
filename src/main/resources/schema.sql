@@ -53,3 +53,25 @@ CREATE TABLE IF NOT EXISTS vehicle
     tonnage int,
     vehicle_class varchar(255)
 );
+
+ALTER TABLE vehicle
+    DROP COLUMN IF EXISTS registration;
+
+ALTER TABLE vehicle
+    DROP COLUMN IF EXISTS tonnage;
+
+CREATE TABLE IF NOT EXISTS truck
+(
+    id varchar(255) not null
+        primary key,
+    tonnage int,
+    constraint FK_truck_vehicle_id foreign key (id) references vehicle
+);
+
+CREATE TABLE IF NOT EXISTS trailer
+(
+    id varchar(255) not null
+        primary key,
+    registration varchar(255),
+    constraint FK_trailer_vehicle_id foreign key (id) references vehicle
+);
