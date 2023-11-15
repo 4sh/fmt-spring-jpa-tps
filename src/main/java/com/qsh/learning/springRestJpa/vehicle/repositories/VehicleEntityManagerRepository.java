@@ -8,7 +8,6 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository
 public class VehicleEntityManagerRepository {
@@ -21,11 +20,7 @@ public class VehicleEntityManagerRepository {
 
     @Transactional
     public List<Truck> getTrucks() {
-        List<Vehicle> vehicles = this.entityManager.createQuery("SELECT v FROM Vehicle v").getResultList();
-        return vehicles.stream()
-                .filter(vehicle -> vehicle instanceof Truck)
-                .map(vehicle -> (Truck) vehicle)
-                .collect(Collectors.toList());
+        return this.entityManager.createQuery("SELECT v FROM Truck v").getResultList();
     }
 
     @Transactional

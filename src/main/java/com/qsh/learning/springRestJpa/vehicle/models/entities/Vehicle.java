@@ -2,8 +2,7 @@ package com.qsh.learning.springRestJpa.vehicle.models.entities;
 
 import jakarta.persistence.*;
 
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@MappedSuperclass
 public abstract class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
