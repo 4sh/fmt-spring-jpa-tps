@@ -75,3 +75,17 @@ CREATE TABLE IF NOT EXISTS trailer
     registration varchar(255),
     constraint FK_trailer_vehicle_id foreign key (id) references vehicle
 );
+
+ALTER TABLE trailer
+    DROP CONSTRAINT IF EXISTS FK_trailer_vehicle_id;
+
+ALTER TABLE truck
+    DROP CONSTRAINT IF EXISTS FK_truck_vehicle_id;
+
+ALTER TABLE trailer
+    ADD COLUMN IF NOT EXISTS brand VARCHAR(255);
+
+ALTER TABLE truck
+    ADD COLUMN IF NOT EXISTS brand VARCHAR(255);
+
+DROP TABLE IF EXISTS vehicle;
