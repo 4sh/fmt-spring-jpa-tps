@@ -13,4 +13,6 @@ public interface VehicleService {
     Car create(Car car);
 
     Car update(String id, Car car);
+
+    void delete(String id);
 }

@@ -40,4 +40,13 @@ public class CarService implements VehicleService {
         System.out.printf("Car %s has been updated\n", car.getId());
         return car;
     }
+
+    @Override
+    public void delete(String id) {
+        this.carFileRepository.delete(id);
+
+        System.out.printf("Car %s has been deleted\n", id);
+    }
+
+
 }

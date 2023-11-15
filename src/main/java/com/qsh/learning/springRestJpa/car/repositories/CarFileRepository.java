@@ -72,4 +72,16 @@ public class CarFileRepository {
             throw new RuntimeException(e);
         }
     }
+
+    public void delete(String carId) {
+        try {
+            List<Car> cars = this.getCars().stream()
+                    .filter(c -> !Objects.equals(carId, c.getId()))
+                    .collect(Collectors.toList());
+
+            this.objectMapper.writeValue(this.file, cars);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
