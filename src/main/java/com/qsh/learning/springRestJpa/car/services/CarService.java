@@ -1,7 +1,9 @@
 package com.qsh.learning.springRestJpa.car.services;
 
+import com.qsh.learning.springRestJpa.car.enums.Color;
 import com.qsh.learning.springRestJpa.car.exceptions.CarNotFoundException;
 import com.qsh.learning.springRestJpa.car.models.entities.Car;
+import com.qsh.learning.springRestJpa.car.models.entities.LicensePlate;
 import com.qsh.learning.springRestJpa.car.repositories.CarEntityManagerRepository;
 import org.springframework.stereotype.Service;
 
@@ -40,5 +42,9 @@ public class CarService {
 
     public void delete(String id) {
         this.carEntityManagerRepository.delete(id);
+    }
+
+    public List<LicensePlate> getLicensePlates(Color color) {
+        return this.carEntityManagerRepository.getLicensePlates(color);
     }
 }

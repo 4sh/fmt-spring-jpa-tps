@@ -2,7 +2,9 @@ package com.qsh.learning.springRestJpa.car.resources;
 
 import com.qsh.learning.springRestJpa.car.enums.Color;
 import com.qsh.learning.springRestJpa.car.mappers.CarMapper;
+import com.qsh.learning.springRestJpa.car.mappers.LicensePlateMapper;
 import com.qsh.learning.springRestJpa.car.models.dtos.CarDto;
+import com.qsh.learning.springRestJpa.car.models.dtos.LicensePlateDto;
 import com.qsh.learning.springRestJpa.car.models.entities.Car;
 import com.qsh.learning.springRestJpa.car.services.CarService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -21,12 +23,16 @@ public class CarResource {
 
     public final CarMapper carMapper;
 
+    public final LicensePlateMapper licensePlateMapper;
+
     public CarResource(
             CarService carService,
-            CarMapper carMapper
+            CarMapper carMapper,
+            LicensePlateMapper licensePlateMapper
     ) {
         this.carService = carService;
         this.carMapper = carMapper;
+        this.licensePlateMapper = licensePlateMapper;
     }
 
     @Operation(
@@ -85,5 +91,18 @@ public class CarResource {
             @PathVariable("id") String id
     ) {
         this.carService.delete(id);
+    }
+
+    @Operation(
+            summary = "Get license plate",
+            description = "Get all license plate assigned to a car with a specific color"
+    )
+    @GetMapping("/with-color/{color}/licensePlate")
+    public List<LicensePlateDto> getLicensePlates(
+            @PathVariable("color") Color color
+    ) {
+        return this.carService.getLicensePlates(color).stream()
+                .map(this.licensePlateMapper::entityToDto)
+                .collect(Collectors.toList());
     }
 }

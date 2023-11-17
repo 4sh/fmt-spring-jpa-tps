@@ -1,9 +1,12 @@
 package com.qsh.learning.springRestJpa.car.repositories;
 
-import com.qsh.learning.springRestJpa.car.models.entities.Car;
+import com.qsh.learning.springRestJpa.car.enums.Color;
+import com.qsh.learning.springRestJpa.car.models.entities.*;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
+
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -17,7 +20,7 @@ public class CarEntityManagerRepository {
 
     @Transactional
     public List<Car> getCars() {
-        return this.entityManager.createQuery("SELECT c FROM Car c").getResultList();
+        return this.entityManager.createQuery("SELECT c FROM Car c", Car.class).getResultList();
     }
 
     @Transactional
@@ -39,5 +42,10 @@ public class CarEntityManagerRepository {
     public void delete(String carId) {
         Car car = this.findById(carId);
         entityManager.remove(car);
+    }
+
+    @Transactional
+    public List<LicensePlate> getLicensePlates(Color color) {
+        return Collections.emptyList();
     }
 }
