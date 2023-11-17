@@ -2,11 +2,11 @@ package com.qsh.learning.springRestJpa.car.repositories;
 
 import com.qsh.learning.springRestJpa.car.enums.Color;
 import com.qsh.learning.springRestJpa.car.models.entities.*;
+import com.qsh.learning.springRestJpa.car.models.entities.LicensePlate;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -46,6 +46,10 @@ public class CarEntityManagerRepository {
 
     @Transactional
     public List<LicensePlate> getLicensePlates(Color color) {
-        return Collections.emptyList();
+        return this.entityManager.createQuery("""
+                            SELECT lp FROM LicensePlate lp INNER JOIN Car c ON lp.id = c.licensePlate.id WHERE c.carDescription.color = :color
+                        """, LicensePlate.class)
+                .setParameter("color", color)
+                .getResultList();
     }
 }
