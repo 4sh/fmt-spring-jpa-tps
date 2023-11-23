@@ -25,11 +25,11 @@ public class Car {
     @JoinColumn(name = "license_plate_id")
     private LicensePlate licensePlate;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "car_id")
     private List<TechnicalControl> technicalControls;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinTable(
             name = "car_driver",
             joinColumns = @JoinColumn(name = "car_id"),

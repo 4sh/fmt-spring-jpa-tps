@@ -4,11 +4,12 @@ import com.qsh.learning.springRestJpa.car.enums.Color;
 import com.qsh.learning.springRestJpa.car.models.entities.*;
 import com.qsh.learning.springRestJpa.car.models.entities.LicensePlate;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import jakarta.persistence.EntityGraph;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.*;
 
 @Repository
 public class CarEntityManagerRepository {
@@ -24,7 +25,11 @@ public class CarEntityManagerRepository {
 
     @Transactional
     public List<Car> getCars() {
+        EntityGraph<?> entityGraph = entityManager.createEntityGraph(Car.class);
+        entityGraph.addAttributeNodes("technicalControls");
+
         return jpaQueryFactory.selectFrom(QCar.car)
+                .setHint("jakarta.persistence.loadgraph", entityGraph)
                 .fetch();
     }
 
