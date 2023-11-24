@@ -25,8 +25,7 @@ public class CarEntityManagerRepository {
 
     @Transactional
     public List<Car> getCars() {
-        EntityGraph<?> entityGraph = entityManager.createEntityGraph(Car.class);
-        entityGraph.addAttributeNodes("technicalControls");
+        EntityGraph<?> entityGraph = entityManager.getEntityGraph("Car.technicalControls");
 
         return jpaQueryFactory.selectFrom(QCar.car)
                 .setHint("jakarta.persistence.loadgraph", entityGraph)

@@ -6,6 +6,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "car")
+@NamedEntityGraph(
+        name = "Car.technicalControls",
+        attributeNodes = {
+                @NamedAttributeNode(value = "technicalControls"),
+        }
+)
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
