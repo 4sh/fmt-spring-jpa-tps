@@ -2,6 +2,7 @@ package com.qsh.learning.springRestJpa.car.repositories;
 
 import com.qsh.learning.springRestJpa.car.enums.Color;
 import com.qsh.learning.springRestJpa.car.models.entities.Car;
+import com.qsh.learning.springRestJpa.car.models.entities.CarSummary;
 import com.qsh.learning.springRestJpa.car.models.entities.LicensePlate;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -19,4 +20,6 @@ public interface CarRepository extends JpaRepository<Car, String> {
         WHERE c.carDescription.color = :color
     """)
     List<LicensePlate> findAlLLicensePlatesByCarColor(Color color);
+
+    List<CarSummary> getCarSummaries();
 }

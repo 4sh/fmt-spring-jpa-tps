@@ -4,6 +4,7 @@ import com.qsh.learning.springRestJpa.car.enums.Color;
 import com.qsh.learning.springRestJpa.car.mappers.CarMapper;
 import com.qsh.learning.springRestJpa.car.mappers.LicensePlateMapper;
 import com.qsh.learning.springRestJpa.car.models.dtos.CarDto;
+import com.qsh.learning.springRestJpa.car.models.dtos.CarSummaryDto;
 import com.qsh.learning.springRestJpa.car.models.dtos.LicensePlateDto;
 import com.qsh.learning.springRestJpa.car.models.entities.Car;
 import com.qsh.learning.springRestJpa.car.services.CarService;
@@ -12,7 +13,6 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RestController
@@ -102,6 +102,17 @@ public class CarResource {
     ) {
         return this.carService.getLicensePlates(color).stream()
                 .map(this.licensePlateMapper::entityToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Operation(
+            summary = "Get car summaries",
+            description = "Get car summaries with brand and number of seats"
+    )
+    @GetMapping("/summary")
+    public List<CarSummaryDto> getCarSummaries() {
+        return this.carService.getCarSummaries().stream()
+                .map(this.carMapper::summaryEntityToSummaryDto)
                 .collect(Collectors.toList());
     }
 }

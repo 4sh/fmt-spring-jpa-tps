@@ -2,7 +2,9 @@ package com.qsh.learning.springRestJpa.car.mappers;
 
 import com.qsh.learning.springRestJpa.car.factories.CarFactory;
 import com.qsh.learning.springRestJpa.car.models.dtos.CarDto;
+import com.qsh.learning.springRestJpa.car.models.dtos.CarSummaryDto;
 import com.qsh.learning.springRestJpa.car.models.entities.Car;
+import com.qsh.learning.springRestJpa.car.models.entities.CarSummary;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -37,4 +39,10 @@ public interface CarMapper {
             @Mapping(target = "drivers", source = "drivers"),
     })
     Car dtoToEntity(CarDto carDto);
+
+    @Mappings({
+            @Mapping(target = "brand", source = "brand"),
+            @Mapping(target = "numberOfSeats", source = "numberOfSeats")
+    })
+    CarSummaryDto summaryEntityToSummaryDto(CarSummary carSummary);
 }
