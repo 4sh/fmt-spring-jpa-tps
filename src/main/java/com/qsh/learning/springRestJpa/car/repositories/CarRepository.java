@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CarRepository extends JpaRepository<Car, String> {
+public interface CarRepository extends JpaRepository<Car, String>, CarRepositoryCustom {
     @EntityGraph(value = "Car.technicalControls", type = EntityGraph.EntityGraphType.LOAD)
     List<Car> findAllByCarDescription_Color(Color color);
 

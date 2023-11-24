@@ -20,7 +20,7 @@ public class CarService {
     }
 
     public List<Car> findAll(Color color) {
-        return this.carRepository.findAllByCarDescription_Color(color);
+        return this.carRepository.findAllByColor(color);
     }
 
     public Car findById(String id) {
