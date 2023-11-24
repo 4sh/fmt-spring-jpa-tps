@@ -21,5 +21,8 @@ public interface CarRepository extends JpaRepository<Car, String> {
     """)
     List<LicensePlate> findAlLLicensePlatesByCarColor(Color color);
 
+    @Query("""
+        SELECT c.carDescription.brand as brand, c.numberOfSeats as numberOfSeats FROM Car c
+    """)
     List<CarSummary> getCarSummaries();
 }
