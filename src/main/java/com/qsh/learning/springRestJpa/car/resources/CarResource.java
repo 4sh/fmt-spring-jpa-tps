@@ -43,10 +43,9 @@ public class CarResource {
     public List<CarDto> findAll(
             @RequestParam(value = "color", required = false) Color color
     ) {
-        List<Car> cars = this.carService.findAll();
+        List<Car> cars = this.carService.findAll(color);
 
         return cars.stream()
-                .filter(car -> color == null || color.equals(car.getCarDescription().getColor()))
                 .map(carMapper::entityToDto)
                 .collect(Collectors.toList());
     }
