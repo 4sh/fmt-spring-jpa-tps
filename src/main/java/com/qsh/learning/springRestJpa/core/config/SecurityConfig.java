@@ -34,6 +34,7 @@ public class SecurityConfig {
                         .requestMatchers(new AntPathRequestMatcher( "/api/trailer", "POST")).hasAuthority("ADMIN")
                         .requestMatchers(new AntPathRequestMatcher( "/api/trailer", "GET")).hasAnyAuthority("USER", "ADMIN")
                         .requestMatchers(new AntPathRequestMatcher( "/api/summary", "GET")).hasAnyAuthority("USER", "ADMIN")
+                        .requestMatchers(new AntPathRequestMatcher( "/actuator/**", "GET")).hasAuthority("ADMIN")
                         .anyRequest().denyAll()
                 )
                 .httpBasic(httpSecurityHttpBasicConfigurer -> new HttpBasicConfigurer<>())
