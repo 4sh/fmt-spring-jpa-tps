@@ -29,6 +29,7 @@ public class SecurityConfig {
                         .requestMatchers(new AntPathRequestMatcher( "/api/car/*", "PUT")).hasAuthority("ADMIN")
                         .requestMatchers(new AntPathRequestMatcher( "/api/car/*", "DELETE")).hasAuthority("ADMIN")
                         .requestMatchers(new AntPathRequestMatcher( "/api/car/with-color/{color}/licensePlate", "GET")).hasAnyAuthority("USER", "ADMIN")
+                        .requestMatchers(new AntPathRequestMatcher( "/api/car/metrics/find", "GET")).hasAuthority("ADMIN")
                         .requestMatchers(new AntPathRequestMatcher( "/api/truck", "POST")).hasAuthority("ADMIN")
                         .requestMatchers(new AntPathRequestMatcher( "/api/truck", "GET")).hasAnyAuthority("USER", "ADMIN")
                         .requestMatchers(new AntPathRequestMatcher( "/api/trailer", "POST")).hasAuthority("ADMIN")

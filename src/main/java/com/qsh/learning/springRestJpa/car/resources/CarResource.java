@@ -4,10 +4,13 @@ import com.qsh.learning.springRestJpa.car.enums.Color;
 import com.qsh.learning.springRestJpa.car.mappers.CarMapper;
 import com.qsh.learning.springRestJpa.car.mappers.LicensePlateMapper;
 import com.qsh.learning.springRestJpa.car.models.dtos.CarDto;
+import com.qsh.learning.springRestJpa.car.models.dtos.CarMetricsDto;
 import com.qsh.learning.springRestJpa.car.models.dtos.CarSummaryDto;
 import com.qsh.learning.springRestJpa.car.models.dtos.LicensePlateDto;
 import com.qsh.learning.springRestJpa.car.models.entities.Car;
+import com.qsh.learning.springRestJpa.car.services.CarMetricsService;
 import com.qsh.learning.springRestJpa.car.services.CarService;
+import io.micrometer.core.instrument.MeterRegistry;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -25,14 +28,18 @@ public class CarResource {
 
     public final LicensePlateMapper licensePlateMapper;
 
+    public final CarMetricsService carMetricsService;
+
     public CarResource(
             CarService carService,
             CarMapper carMapper,
-            LicensePlateMapper licensePlateMapper
+            LicensePlateMapper licensePlateMapper,
+            CarMetricsService carMetricsService
     ) {
         this.carService = carService;
         this.carMapper = carMapper;
         this.licensePlateMapper = licensePlateMapper;
+        this.carMetricsService = carMetricsService;
     }
 
     @Operation(
@@ -114,5 +121,14 @@ public class CarResource {
         return this.carService.getCarSummaries().stream()
                 .map(this.carMapper::summaryEntityToSummaryDto)
                 .collect(Collectors.toList());
+    }
+
+    @Operation(
+            summary = "Get metrics on find request",
+            description = "Get metrics on find request"
+    )
+    @GetMapping("/metrics/find")
+    public CarMetricsDto getMetrics() {
+        return carMetricsService.getFindMetrics();
     }
 }
