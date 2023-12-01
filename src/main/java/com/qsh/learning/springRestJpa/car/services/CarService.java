@@ -15,15 +15,23 @@ public class CarService {
 
     private final CarRepository carRepository;
 
-    public CarService(CarRepository carRepository) {
+    private final CarMetricsService carMetricsService;
+
+    public CarService(
+            CarRepository carRepository,
+            CarMetricsService carMetricsService
+    ) {
         this.carRepository = carRepository;
+        this.carMetricsService = carMetricsService;
     }
 
     public List<Car> findAll(Color color) {
+        carMetricsService.incrementFindCounter();
         return this.carRepository.findAllByColor(color);
     }
 
     public Car findById(String id) {
+        carMetricsService.incrementFindCounter();
         return this.carRepository.findById(id)
                 .orElseThrow(() -> new CarNotFoundException(String.format("Car %s not found", id)));
     }
