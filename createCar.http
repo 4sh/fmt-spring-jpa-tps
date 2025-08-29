@@ -1,0 +1,14 @@
+POST http://localhost:8080/api/car
+Content-Type: application/json
+
+{
+    "id": "CAR-12345",
+    "brand": "Peugeot",
+    "model": "208",
+    "color": "blue",
+    "number_of_doors": 5,
+    "number_of_seats": 5,
+    "catalog_reference": "PG-208-2024"
+}
+
+###
